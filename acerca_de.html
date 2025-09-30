@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invencible - Acerca de</title>
+    <link rel="icon" type="image/png" href="pictures/icono.png">
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Importamos la fuente "Bangers" de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+</head>
+<body class="page-acerca">
+    <header>
+      <img src="pictures/invencible_logo.png" alt="Logo de Invencible" width="300">
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="hamburger-label">☰</label>
+      <ul class="nav-menu">
+        <li class="nav-inicio"><a href="index.html">Inicio</a></li>
+        <li class="nav-personajes"><a href="personajes.html">Personajes</a></li>
+        <li class="dropdown nav-temporadas">
+          <a href="javascript:void(0)" class="dropbtn">Temporadas</a>
+          <div class="dropdown-content">
+            <a href="especial.html" class="nav-especial">Especial</a>
+            <a href="temporada-1.html" class="nav-t1">Temporada 1</a>
+            <a href="temporada-2.html" class="nav-t2">Temporada 2</a>
+            <a href="temporada-3.html" class="nav-t3">Temporada 3</a>
+          </div>
+        </li>
+        <li class="nav-acerca"><a href="acerca_de.html">Acerca de</a></li>
+      </ul>
+      <!-- Capa para cerrar el menú en móvil -->
+      <div id="menu-overlay"></div>
+    </header>
+
+    <main>
+        <section class="about-section">
+            <h2>Acerca de Este Fansite</h2>
+            <p>Este sitio fue creado por un fanático de "Invencible" con el objetivo de centralizar información, guías de episodios y detalles sobre los personajes de esta increíble serie. El proyecto nació como una iniciativa para un curso de programación, pero creció hasta convertirse en un homenaje completo a la obra de Robert Kirkman.</p>
+            <p>Aquí encontrarás todo lo que necesitas para sumergirte en el universo de Invencible, desde resúmenes de temporadas hasta biografías detalladas. ¡Esperamos que lo disfrutes!</p>
+        </section>
+
+        <div class="contact-map-wrapper">
+            <section class="map-section">
+                <h2>Nuestra Ubicación</h2>
+                <p>Encuentra la sede (ficticia) de nuestro fansite en el corazón de la cultura comiquera.</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.536107187881!2d-73.99005388459395!3d40.75033997932777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9a9a9a9a9%3A0x8a3c8e0a0a0a0a0a!2sMidtown%20Comics!5e0!3m2!1ses!2ses!4v1620211101234!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </section>
+    
+            <section id="contact-section" class="contact-section">
+                <form class="contact-form">
+                    <h2>Envíanos un mensaje</h2>
+                    <p>¿Tienes alguna pregunta o sugerencia? ¡Nos encantaría saber de ti!</p>
+                    
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                    
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+                    
+                    <button type="submit">Enviar Mensaje</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p><strong>Descargo de Responsabilidad:</strong> Este es un sitio de fans no oficial creado con fines educativos. Todos los personajes, imágenes y nombres son propiedad de Robert Kirkman, Cory Walker, Ryan Ottley y Amazon Studios.</p>
+            <p>¿Tienes alguna sugerencia? <a href="acerca_de.html#contact-section">Contáctanos aquí</a>.</p>
+            <p>&copy; 2024 Fansite de Invencible. Todos los derechos reservados.</p>
+            <div class="social-media">
+              <a href="https://twitter.com/InvincibleHQ" target="_blank" title="Twitter/X"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx.png" alt="Twitter/X"></a>
+              <a href="https://www.instagram.com/invincible.hq/" target="_blank" title="Instagram"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"></a>
+              <a href="https://www.youtube.com/@Invincible" target="_blank" title="YouTube"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png" alt="YouTube"></a>
+            </div>
+        </div>
+        <a href="#" id="scrollTopBtn" title="Volver arriba">↑</a>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

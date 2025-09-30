@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang = "es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Invencible - Inicio</title>
+    <link rel="icon" type="image/png" href="pictures/icono.png">
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Importamos la fuente "Bangers" de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  </head>
+  <body class="page-inicio">
+    <header>
+      <img src="pictures/invencible_logo.png" alt="Logo de Invencible" width="300">
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="hamburger-label">☰</label>
+      <ul class="nav-menu">
+        <li class="nav-inicio"><a href="index.html">Inicio</a></li>
+        <li class="nav-personajes"><a href="personajes.html">Personajes</a></li>
+        <li class="dropdown nav-temporadas">
+          <a href="javascript:void(0)" class="dropbtn">Temporadas</a>
+          <div class="dropdown-content">
+            <a href="especial.html" class="nav-especial">Especial</a>
+            <a href="temporada-1.html">Temporada 1</a>
+            <a href="temporada-2.html">Temporada 2</a>
+            <a href="temporada-3.html">Temporada 3</a>
+          </div>
+        </li>
+        <li class="nav-acerca"><a href="acerca_de.html">Acerca de</a></li>
+      </ul>
+      <!-- Capa para cerrar el menú en móvil -->
+      <div id="menu-overlay"></div>
+    </header>
+
+    <main>
+      <section class="home-section">
+        <h2>Sobre la Serie</h2>
+        <p>
+          Invincible es una serie animada producida por Amazon Prime Video, basada en el cómic homónimo de Robert Kirkman. La serie mantiene la esencia del material original, adaptando su estilo gráfico y su tono maduro a la animación, incluyendo escenas de acción intensas y momentos de drama y humor característicos de los cómics. Hasta la fecha, la serie cuenta con tres temporadas, consolidándose como una de las adaptaciones de superhéroes más fieles y reconocidas de los últimos años. Además de trasladar la historia central, la serie amplía la narrativa con detalles visuales y auditivos que aprovechan el formato animado para intensificar la experiencia de la historia creada por Kirkman.
+        </p>
+        <img src="pictures/portada.jpg" alt="Portada de la serie Invencible">
+
+      </section>
+
+      <section class="creator-section">
+        <h2>Sobre el Creador</h2>
+        <div class="creator-content">
+            <img src="pictures/kirkman.jpg" alt="Foto de Robert Kirkman" class="creator-photo">
+            <div class="creator-bio">
+                <h3>Robert Kirkman</h3>
+                <p>Robert Kirkman es un aclamado escritor de cómics estadounidense, conocido por ser el cocreador de series icónicas como <strong>The Walking Dead</strong> e <strong>Invincible</strong>. Su estilo narrativo se caracteriza por un profundo desarrollo de personajes y por explorar las consecuencias emocionales y morales de vivir en mundos extraordinarios. Kirkman ha sido fundamental en la adaptación de sus obras a la televisión, actuando como productor ejecutivo para asegurar que la visión original se mantenga fiel, lo que ha resultado en series de gran éxito y aclamación por parte de la crítica y los fans.</p>
+            </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+          <p><strong>Descargo de Responsabilidad:</strong> Este es un sitio de fans no oficial creado con fines educativos. Todos los personajes, imágenes y nombres son propiedad de Robert Kirkman, Cory Walker, Ryan Ottley y Amazon Studios.</p>
+          <p>¿Tienes alguna sugerencia? <a href="acerca_de.html#contact-section">Contáctanos aquí</a>.</p>
+          <p>&copy; 2024 Fansite de Invencible. Todos los derechos reservados.</p>
+          <div class="social-media">
+            <a href="https://twitter.com/InvincibleHQ" target="_blank" title="Twitter/X"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitterx.png" alt="Twitter/X"></a>
+            <a href="https://www.instagram.com/invincible.hq/" target="_blank" title="Instagram"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram"></a>
+            <a href="https://www.youtube.com/@Invincible" target="_blank" title="YouTube"><img src="https://img.icons8.com/ios-filled/50/ffffff/youtube-play.png" alt="YouTube"></a>
+          </div>
+      </div>
+    </footer>
+
+    <!-- Lightbox Structure (necesario para que el script no falle) -->
+    <div id="lightbox" class="lightbox-container">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <a class="prev-btn">&#10094;</a>
+        <a class="next-btn">&#10095;</a>
+    </div>
+
+    <!-- Botón para Volver Arriba -->
+    <a href="#" id="scrollTopBtn" title="Volver arriba">↑</a>
+    <script src="script.js"></script>
+  </body>
+</html>

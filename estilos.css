@@ -1,0 +1,782 @@
+/* Estilos Generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    /* Cambiamos el color de fondo por una imagen */
+    background-image: url('pictures/fondo.png');
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen para que no se desplace con el scroll */
+    color: #ffc300; /* Texto principal en amarillo para contraste */
+    background-color: #0d1b2a; /* Color de respaldo si la imagen no carga */
+}
+
+/* Encabezado y Navegación */
+header {
+    background-color: #0d1b2a; /* Azul oscuro */
+    color: #ffc300;
+    padding: 10px 20px; /* Padding para la vista móvil */
+    border-bottom: 5px solid #ffc300; /* Amarillo Invencible */
+    /* Cambiamos a 'fixed' para tener control total con JS */
+    position: fixed;
+    top: 0; /* Lo pega en la parte superior */
+    left: 0;
+    right: 0;
+    z-index: 1001; /* El header y su contenido deben estar por encima de todo */
+    text-align: center; /* Centramos el contenido en móvil por defecto */
+}
+
+header img {
+    max-width: 180px; /* Tamaño del logo para móvil */
+    margin-bottom: 5px; /* Margen inferior para móvil */
+}
+
+nav { /* No necesita posicionamiento especial aquí */ }
+
+.nav-menu {
+    list-style-type: none;
+    padding: 0; /* Resetea el padding por defecto del ul */
+    /* --- ESTILOS PARA MÓVIL (BASE) --- */
+    position: fixed; /* Lo sacamos del flujo normal */    
+    top: 100px; /* Nueva altura aproximada del header */
+    left: 0;
+    width: 100%;
+    /* Estilos visuales movidos aquí */
+    background-color: #0d1b2a;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    /* Cambios para la animación */
+    visibility: hidden; /* Oculto por defecto en móvil */
+    opacity: 0;
+    transform: translateY(-10px) translateX(-50%); /* Posición inicial para la animación */
+    z-index: 1002; /* Asegura que el menú esté por encima del overlay */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    transform: translateY(-20px); /* Animación inicial */
+}
+ 
+nav ul li, .nav-menu li {
+    margin: 0;
+    width: 100%; /* Asegura que el 'li' ocupe todo el ancho del menú */
+}
+
+.nav-menu li a {
+    display: block;
+    color: #ffc300;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-menu li a:hover {
+    background-color: #ffc300; /* Amarillo Invencible */
+    color: #1E90FF;
+}
+
+/* --- Estilos para el enlace de la página activa --- */
+.page-inicio .nav-inicio > a,
+.page-personajes .nav-personajes > a,
+/* Resalta el botón principal "Temporadas" si estamos en cualquiera de sus páginas */
+.page-especial .nav-temporadas > a.dropbtn,
+.page-t1 .nav-temporadas > a.dropbtn,
+.page-t2 .nav-temporadas > a.dropbtn,
+.page-t3 .nav-temporadas > a.dropbtn,
+.page-acerca .nav-acerca > a {
+    background-color: #ffc300; /* Fondo amarillo */
+    color: #0d1b2a; /* Texto azul oscuro */
+    font-weight: bold;
+    /* Evita que el hover cambie el color del enlace activo */
+    pointer-events: none; 
+    cursor: default;
+}
+
+/* Estilo para el enlace específico del submenú activo */
+/* Hacemos el selector más específico para que gane al estilo por defecto del submenú */
+.page-especial .dropdown-content .nav-especial,
+.page-t1 .dropdown-content .nav-t1,
+.page-t2 .dropdown-content .nav-t2,
+.page-t3 .dropdown-content .nav-t3 {
+    background-color: #ffc300 !important;
+    color: #0d1b2a !important;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* --- INICIO: ESTILOS PARA SUBMENÚ DESPLEGABLE --- */
+.dropdown {
+    position: relative; /* Necesario para posicionar el contenido del dropdown */
+}
+
+.dropbtn {
+    cursor: pointer; /* Cambia el cursor para indicar que es interactivo */
+}
+
+.dropdown-content {
+    display: none; /* Oculto por defecto */
+    /* Cambiamos a position relative para que fluya dentro del menú en móvil */
+    position: relative; 
+    background-color: #1b263b; /* Un azul oscuro, como las tarjetas */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    width: 100%; /* Ocupa el ancho del menú principal */
+}
+
+.dropdown-content a {
+    color: #ffc300;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; 
+    text-align: center; /* Centramos para que coincida con el menú principal */
+    padding-left: 30px; /* Añadimos un poco de indentación */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Muestra el submenú al pasar el ratón sobre el 'li.dropdown' */
+}
+
+/* Estilos para el submenú en pantallas grandes (escritorio) */
+@media (min-width: 769px) {
+    /* Layout de escritorio para el header */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 40px;
+    }
+    header img {
+        max-width: 200px; /* Agrandamos el logo */
+        margin-bottom: 0;
+    }
+
+    /* Hacemos el menú visible y horizontal en escritorio */
+    .nav-menu {
+        position: static; /* Lo devolvemos al flujo normal del header */
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        background: none;
+        box-shadow: none;
+        width: auto; /* Ancho automático basado en el contenido */
+        display: flex; /* Hacemos que los elementos internos se pongan en fila */
+        gap: 15px; /* Espacio entre los elementos del menú */
+        margin-top: 0; /* Ya no hay título, quitamos el margen */
+    }
+
+    .nav-menu li {
+        width: auto; /* El ancho del 'li' se ajusta a su contenido */
+    }
+    .dropdown-content {
+        position: absolute; /* Vuelve a ser absoluto */
+        top: 100%; /* Lo posiciona justo debajo del elemento padre (el 'li') */
+        left: 50%; /* Lo mueve al centro del elemento padre */
+        min-width: 160px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, -10px); /* Lo centra horizontalmente y añade animación vertical */
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    }
+
+    .dropdown-content a {
+        text-align: center; /* Centramos las opciones del submenú */
+        padding-left: 16px; /* Restauramos el padding simétrico */
+    }
+
+    .dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0); /* Mantiene el centrado al aparecer */
+}
+}
+/* --- FIN: ESTILOS PARA SUBMENÚ DESPLEGABLE --- */
+
+/* Contenido Principal */
+main {
+    /* Este padding es para la vista móvil, donde el header es más alto */
+    padding-top: 140px; /* Volvemos al padding para el header móvil */
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    max-width: 900px;
+    margin: 0 auto 20px auto; /* Ajustamos el margen superior */
+    background-color: #0d1b2a; /* Un azul oscuro para el contenedor principal */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+    font-family: 'Bangers', cursive; /* Nueva fuente estilo cómic */
+    color: #1E90FF; /* Títulos en azul */
+    letter-spacing: 2px; /* Añadimos un poco de espacio entre letras */
+    font-size: 2.5em; /* Aumentamos el tamaño base de los títulos */
+    -webkit-text-stroke: 1px #0d1b2a; /* Borde sutil para más impacto */
+}
+
+/* --- INICIO: NUEVOS ESTILOS MENÚ HAMBURGUESA (Checkbox Hack) --- */
+
+/* Checkbox oculto que controla el menú */
+#menu-toggle {
+  display: none;
+}
+
+/* Estilo del label que funciona como botón hamburguesa */
+.hamburger-label {
+  display: block; /* Siempre visible */
+  font-size: 28px;
+  cursor: pointer;
+  color: #ffc300;
+  /* En móvil, lo devolvemos al flujo normal para que se centre con el resto */
+  position: relative;
+  transform: none;
+}
+
+/* Ocultamos el botón hamburguesa en escritorio */
+@media (min-width: 769px) {
+    .hamburger-label { display: none; }
+}
+
+/* Estilos del menú desplegable cuando se activa */
+#menu-toggle:checked ~ .nav-menu {
+    /* Hacemos visible el menú */
+    visibility: visible; 
+    opacity: 1;
+    transform: translateY(0); /* Lo movemos a su posición final en móvil */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Capa para cerrar el menú al hacer clic fuera */
+#menu-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Justo debajo del menú, pero por encima del contenido principal */
+}
+
+/* Muestra la capa cuando el menú está abierto */
+#menu-toggle:checked ~ #menu-overlay {
+    display: block;
+}
+
+/* En escritorio, cuando el menú está activo, usamos la transformación original */
+@media (min-width: 769px) {
+    #menu-toggle:checked ~ .nav-menu {
+        transform: translateY(0) translateX(-50%);
+    }
+}
+/* Clase para la animación de scroll del header */
+.header-transition {
+    transition: top 0.3s ease-in-out;
+}
+
+/* --- INICIO: NUEVOS ESTILOS PARA PÁGINA DE PERSONAJES (TARJETAS) --- */
+
+/* Contenedor de la cuadrícula de personajes */
+.characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Cuadrícula responsiva */
+    gap: 25px;
+}
+
+/* Estilo de cada tarjeta de personaje */
+.character-card {
+    background-color: #1b263b; /* Un azul ligeramente más claro */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* --- Estilos para la animación de aparición (fade-in) --- */
+    opacity: 0; /* Inicialmente oculto */
+    transform: translateY(20px); /* Ligeramente desplazado hacia abajo */
+    transition: transform 0.5s ease-out, box-shadow 0.3s, opacity 0.5s ease-out;
+}
+
+.character-card:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el cursor */
+    box-shadow: 0 6px 15px rgba(255, 195, 0, 0.2); /* Sombra amarilla sutil */
+}
+
+/* Clase que se añadirá con JS cuando la tarjeta sea visible */
+.character-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Contenedor para el texto del personaje */
+.character-info {
+    flex: 1; /* Permite que el texto ocupe el espacio restante */
+}
+
+article:last-child {
+    border-bottom: none;
+}
+
+/* Imagen dentro de la tarjeta de personaje */
+.character-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Imagen circular */
+    object-fit: contain; /* Muestra la imagen completa dentro del círculo */
+    border: 3px solid #ffc300; /* Borde amarillo */
+    background-color: #0d1b2a; /* Fondo para rellenar el espacio si la imagen no es cuadrada */
+    margin-bottom: 15px;
+}
+
+/* Alinea a la izquierda la biografía de los personajes */
+.character-card > p, .character-info p {
+    text-align: left;
+}
+
+/* Estilos para las imágenes de los episodios */
+.episode-list img {
+    width: 30%; /* La imagen ocupa el 30% del contenedor */
+    min-width: 150px; /* Ancho mínimo para que no se encoja demasiado */
+    height: auto;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+    border-radius: 8px;
+    border: 3px solid #ffc300; /* Marco amarillo fino */
+}
+
+/* Nuevo contenedor para la imagen y la sinopsis */
+.episode-content {
+    display: flex;
+    gap: 20px; /* Espacio entre la imagen y el texto */
+    align-items: center; /* Alinea verticalmente la imagen y el texto */
+}
+
+/* Ajustes para la sinopsis */
+.episode-content p {
+    flex: 1; /* El texto ocupa el espacio restante */
+    margin: 0; /* Quitamos el margen por defecto del párrafo */
+    font-size: 1.05em; /* Aumentamos ligeramente el tamaño de la fuente */
+    text-align: left; /* Alineamos el texto a la izquierda */
+}
+
+/* --- INICIO: NUEVOS ESTILOS PARA PÁGINA DE EPISODIOS --- */
+.season-title {
+    text-align: center; /* Centra el título de la temporada */
+    margin-bottom: 0; /* Eliminamos el margen inferior para reducir el espacio */
+}
+
+.season-poster {
+    display: block; /* Para poder aplicar márgenes automáticos */
+    margin: 10px auto 20px auto; /* Reducimos el margen superior a la mitad (10px) */
+    max-width: 50%; /* Ajusta el tamaño para que no sea demasiado grande */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.release-date {
+    text-align: center; /* Centra el texto */
+    font-size: 0.9em; /* Lo hace un poco más pequeño */
+    color: #ffc300; /* Amarillo, como el resto de textos destacados */
+    margin-top: -10px; /* Lo acerca un poco más a la imagen de arriba */
+}
+/* --- FIN: NUEVOS ESTILOS PARA PÁGINA DE EPISODIOS --- */
+
+/* --- INICIO: NUEVO CONTENEDOR PARA TRAILER Y PÓSTER --- */
+.season-intro {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    gap: 20px;
+    align-items: center; /* Centra horizontalmente el video y el póster */
+    margin-bottom: 40px; /* Espacio antes de la lista de episodios */
+}
+
+.season-intro .video-container,
+.season-intro .season-poster {
+    width: 100%; /* Hacemos que ambos ocupen el 100% de su contenedor padre */
+}
+
+.season-intro .video-container {
+    margin: 0; /* Reseteamos el margen que tenía antes */
+    max-width: 800px; /* Ancho máximo para el video */
+}
+
+/* Restauramos el estilo del póster para que no sea un fondo */
+.season-intro .season-poster {
+    position: static;
+    filter: none;
+}
+
+.season-intro .season-poster {
+    max-width: 450px; /* Limitamos el ancho del póster para que sea más pequeño que el video */
+}
+/* --- FIN: NUEVO CONTENEDOR PARA TRAILER Y PÓSTER --- */
+
+/* Estilo para la imagen de portada en el Index */
+.home-section img {
+    display: block;
+    margin: 20px auto 0 auto; /* Margen superior, centrado horizontal, sin margen inferior */
+    max-width: 100%;
+}
+
+/* Estilo para el título del tráiler */
+.trailer-title {
+    text-align: center;
+}
+
+/* --- Estilos para el video de YouTube --- */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporción 16:9 (para videos panorámicos) */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 30px auto 0 auto; /* Espacio superior y centrado */
+    border: 3px solid #ffc300; /* Marco amarillo fino */
+    border-radius: 8px; /* Esquinas redondeadas para el marco */
+}
+
+.creator-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 3px solid #1E90FF;
+}
+
+.creator-content {
+    display: flex;
+    align-items: flex-start; /* Alinea los items al inicio */
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.creator-photo {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    border: 3px solid #ffc300;
+}
+
+.creator-bio {
+    flex: 1;
+    text-align: left;
+}
+
+/* Media query para que se apile en pantallas pequeñas */
+@media (max-width: 600px) {
+    .creator-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Estilos para la sección de Twitter --- */
+.twitter-section {
+    margin-top: 40px;
+    padding-top: 30px;
+}
+/* Pie de página */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #0d1b2a;
+    color: #ffc300;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+    max-width: 600px;
+}
+
+.footer-content a {
+    color: #1E90FF; /* Azul para que destaque como enlace */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.social-media {
+    margin-top: 15px;
+}
+
+.social-media a {
+    margin: 0 10px;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.social-media img {
+    width: 30px; /* Tamaño de los iconos */
+    height: 30px;
+}
+
+.social-media a:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el cursor */
+}
+
+/* --- Media Queries para Diseño Responsivo --- */
+@media (max-width: 768px) {
+    /* Contenido principal ocupa más ancho */
+    main {
+        padding-top: 140px; /* Igualamos el padding para consistencia */
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+        margin: 15px;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger-label {
+        display: none;
+    }
+
+    /* Reducimos el padding en todas las páginas de escritorio, excepto en la de personajes */
+    body:not(.page-personajes) main {
+        padding-top: 60px; /* Reducimos el padding para el header de escritorio */
+    }
+
+    /* Ajuste específico para la página de personajes en escritorio */
+    .page-personajes main {
+        padding-top: 100px; /* Reducimos el padding en 20px (140px - 20px) */
+    }
+
+    .season-poster {
+        max-width: 50%;
+    }
+}
+
+/* --- Estilos para el botón de Volver Arriba --- */
+#scrollTopBtn {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Posición fija en la pantalla */
+    bottom: 20px; /* Distancia desde abajo */
+    right: 30px; /* Distancia desde la derecha */
+    z-index: 99; /* Asegura que esté por encima de otros elementos */
+    border: none;
+    outline: none;
+    background-color: #ffc300; /* Amarillo Invencible */
+    color: #0d1b2a; /* Azul oscuro */
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%; /* Lo hace circular */
+    font-size: 18px;
+    line-height: 1; /* Alinea la flecha verticalmente */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    transition: background-color 0.3s;
+}
+
+/* --- Estilos para el Lightbox de Personajes --- */
+.lightbox-container {
+    position: fixed;
+    z-index: 2000; /* z-index más alto para estar por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    /* Cambios para la animación */
+    display: flex; /* Mantenemos flex para el centrado */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+    transform: scale(0.9); /* Estado inicial para la animación de zoom */
+    transition: transform 0.3s ease, opacity 0.2s ease-in-out; /* Añadimos transición para la opacidad */
+}
+
+.close-btn, .prev-btn, .next-btn {
+    cursor: pointer;
+    position: absolute;
+    color: #ffc300;
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.lightbox-container.visible .lightbox-content {
+    transform: scale(1); /* Estado final de la animación de zoom */
+}
+
+.close-btn { top: 15px; right: 35px; }
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+.close-btn:hover, .prev-btn:hover, .next-btn:hover {
+    color: #bbb;
+}
+
+/* --- Estilos para la sección y el formulario de contacto --- */
+.contact-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 3px solid #1E90FF; /* Línea azul para separar secciones */
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    color: #ffc300; /* Amarillo */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #1b263b; /* Azul oscuro de las tarjetas */
+    border: 2px solid #1E90FF; /* Borde azul */
+    border-radius: 5px;
+    color: #ffffff; /* Texto blanco */
+    font-size: 16px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #ffc300; /* Borde amarillo al enfocar */
+}
+
+.contact-form button {
+    padding: 15px 20px;
+    background-color: #ffc300; /* Amarillo Invencible */
+    color: #0d1b2a; /* Azul oscuro */
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #e6b000; /* Amarillo un poco más oscuro */
+}
+
+/* --- Estilos para el Carrusel de la Galería --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo del carrusel */
+    margin: auto;
+    overflow: hidden; /* Oculta las imágenes que no están en el viewport */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Animación de deslizamiento */
+}
+
+.carousel-slide img {
+    width: 100%;
+    flex-shrink: 0; /* Evita que las imágenes se encojan */
+    object-fit: contain; /* Asegura que se vea toda la imagen */
+    background-color: #000; /* Fondo negro por si las imágenes no son panorámicas */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffc300;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 24px;
+    z-index: 100;
+    transition: background-color 0.3s;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-btn.prev-btn {
+    left: 10px;
+}
+
+.carousel-btn.next-btn {
+    right: 10px;
+}
+
+/* --- Estilos para la sección del Mapa --- */
+.map-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 3px solid #1E90FF; /* Línea azul para separar secciones */
+    text-align: center; /* Centra el título y el párrafo */
+}
+
+.map-container {
+    position: relative;
+    overflow: hidden;    
+    border-radius: 8px;
+    border: 3px solid #ffc300; /* Mismo borde que los videos */
+    margin-top: 20px;
+    /* Hacemos que el contenedor del mapa se estire en el layout flex */
+    flex-grow: 1; 
+    /* Técnica de aspect-ratio para iframes responsivos */
+    padding-bottom: 75%; /* Proporción 4:3. Puedes ajustarla. 56.25% para 16:9 */
+    height: 0;
+}
+
+.map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- Contenedor para Mapa y Formulario --- */
+.contact-map-wrapper {
+    align-items: stretch; /* Estira los hijos para que tengan la misma altura */
+    display: flex;
+    gap: 30px; /* Espacio entre el mapa y el formulario */
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 3px solid #1E90FF; /* Línea azul para separar secciones */
+}
+
+.contact-map-wrapper > section {
+    flex: 1; /* Cada sección ocupa el 50% del espacio */
+    margin-top: 0; /* Quitamos los márgenes superiores individuales */
+    padding-top: 0;
+    border-top: none; /* Quitamos los bordes superiores individuales */
+    /* Hacemos que las secciones internas también sean flex para controlar sus hijos */
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 800px) {
+    .contact-map-wrapper {
+        flex-direction: column; /* Apila los elementos en pantallas más pequeñas */
+    }
+}
